@@ -1,668 +1,621 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Linkora | تصميم روابط حساباتك</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Cairo', sans-serif;
-  background:
-    radial-gradient(circle at 80% 10%, #4b3515 0%, transparent 25%),
-    radial-gradient(circle at 10% 80%, #30200d 0%, transparent 25%),
-    #080808;
-  color: white;
-  line-height: 1.8;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.container {
-  width: min(1150px, 92%);
-  margin: auto;
-}
-
-/* الشريط العلوي */
-header {
-  border-bottom: 1px solid #3b2b16;
-  background: rgba(8, 8, 8, 0.9);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(15px);
-}
-
-.navbar {
-  min-height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  color: #f0c875;
-}
-
-.logo span {
-  color: white;
-}
-
-nav {
-  display: flex;
-  gap: 28px;
-  color: #ddd;
-  font-size: 15px;
-}
-
-nav a:hover {
-  color: #f0c875;
-}
-
-.order-button {
-  border: 1px solid #c99d4c;
-  border-radius: 30px;
-  padding: 9px 20px;
-  color: #f5d58d;
-  transition: 0.3s;
-}
-
-.order-button:hover {
-  background: #c99d4c;
-  color: #111;
-}
-
-/* القسم الرئيسي */
-.hero {
-  min-height: 650px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 45px;
-  padding: 70px 0;
-}
-
-.small-title {
-  color: #d8ae5d;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.hero h1 {
-  font-size: clamp(38px, 5vw, 70px);
-  line-height: 1.35;
-  margin-bottom: 25px;
-}
-
-.gold {
-  color: #eac36e;
-}
-
-.hero p {
-  color: #c8c8c8;
-  font-size: 18px;
-  max-width: 520px;
-  margin-bottom: 30px;
-}
-
-.main-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #ffe29a, #bd8733);
-  color: #17110a;
-  padding: 14px 28px;
-  border-radius: 35px;
-  font-weight: 800;
-  box-shadow: 0 0 25px rgba(225, 170, 70, 0.25);
-  transition: 0.3s;
-}
-
-.main-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 35px rgba(225, 170, 70, 0.5);
-}
-
-.price {
-  color: #aaa;
-  margin-top: 12px;
-  font-size: 14px;
-}
-
-/* صورة الهاتف */
-.phone-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.phone {
-  width: 270px;
-  min-height: 510px;
-  border: 3px solid #b98b3d;
-  border-radius: 38px;
-  padding: 30px 18px;
-  background:
-    radial-gradient(circle at 50% 15%, #253c43, transparent 28%),
-    linear-gradient(160deg, #101010, #050505);
-  box-shadow:
-    0 0 25px rgba(220, 170, 70, 0.3),
-    inset 0 0 25px rgba(255, 255, 255, 0.04);
-  transform: rotate(5deg);
-}
-
-.phone-top {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-.phone-avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  margin: auto;
-  display: grid;
-  place-items: center;
-  border: 2px solid #d5ad5e;
-  font-size: 30px;
-  background: #161616;
-}
-
-.phone h3 {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
-.phone small {
-  color: #aaa;
-}
-
-.phone-link {
-  display: block;
-  border: 1px solid #555;
-  border-radius: 12px;
-  padding: 8px;
-  margin: 10px 0;
-  text-align: center;
-  font-size: 13px;
-  transition: 0.3s;
-}
-
-.phone-link:hover {
-  border-color: #e2b85e;
-  box-shadow: 0 0 12px rgba(226, 184, 94, 0.35);
-}
-
-/* الأرقام */
-.stats {
-  display: flex;
-  gap: 45px;
-  margin-top: 35px;
-}
-
-.stat strong {
-  display: block;
-  color: #f0c875;
-  font-size: 25px;
-}
-
-.stat span {
-  color: #aaa;
-  font-size: 13px;
-}
-
-/* الأقسام */
-.section {
-  padding: 75px 0;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.section-title small {
-  color: #d8ae5d;
-}
-
-.section-title h2 {
-  font-size: 32px;
-  margin-top: 5px;
-}
-
-.section-title p {
-  color: #999;
-}
-
-/* المميزات */
-.features {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.feature {
-  border: 1px solid #4b371d;
-  border-radius: 20px;
-  padding: 28px 20px;
-  text-align: center;
-  background: linear-gradient(145deg, #121212, #0b0b0b);
-  transition: 0.3s;
-}
-
-.feature:hover {
-  transform: translateY(-6px);
-  border-color: #d5a94e;
-}
-
-.feature-icon {
-  font-size: 38px;
-  color: #e8c36f;
-  margin-bottom: 10px;
-}
-
-.feature h3 {
-  color: #e8c36f;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.feature p {
-  color: #aaa;
-  font-size: 14px;
-}
-
-/* النماذج */
-.samples {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.sample {
-  min-height: 300px;
-  border: 1px solid #59401f;
-  border-radius: 22px;
-  padding: 20px;
-  text-align: center;
-  background: linear-gradient(160deg, #17120c, #080808);
-  transition: 0.3s;
-}
-
-.sample:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 0 25px rgba(220, 170, 70, 0.2);
-}
-
-.sample:nth-child(2) {
-  background: linear-gradient(160deg, #24122d, #080808);
-}
-
-.sample:nth-child(3) {
-  background: linear-gradient(160deg, #10283b, #080808);
-}
-
-.sample:nth-child(4) {
-  background: linear-gradient(160deg, #321313, #080808);
-}
-
-.sample-avatar {
-  width: 65px;
-  height: 65px;
-  margin: 5px auto 12px;
-  border-radius: 50%;
-  border: 2px solid #e2bc68;
-  display: grid;
-  place-items: center;
-  font-size: 25px;
-}
-
-.sample h3 {
-  font-size: 17px;
-}
-
-.sample p {
-  color: #aaa;
-  font-size: 12px;
-  margin-bottom: 18px;
-}
-
-.sample-link {
-  display: block;
-  border: 1px solid #6b5129;
-  border-radius: 9px;
-  padding: 5px;
-  margin: 7px 0;
-  font-size: 12px;
-}
-
-/* دعوة الطلب */
-.cta {
-  border: 1px solid #745522;
-  border-radius: 25px;
-  padding: 45px 25px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(180, 125, 35, 0.18), transparent 30%),
-    #0d0d0d;
-}
-
-.cta h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.cta p {
-  color: #aaa;
-  margin-bottom: 25px;
-}
-
-/* التذييل */
-footer {
-  border-top: 1px solid #332513;
-  padding: 30px 0;
-  margin-top: 60px;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.footer-text {
-  color: #999;
-  font-size: 13px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 15px;
-  color: #dcb665;
-}
-
-/* الجوال */
-@media (max-width: 800px) {
-  nav {
-    display: none;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 45px 0;
-  }
-
-  .hero p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .stats {
-    justify-content: center;
-    gap: 25px;
-  }
-
-  .phone-area {
-    margin-top: 20px;
-  }
-
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .samples {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@media (max-width: 450px) {
-  .logo {
-    font-size: 22px;
-  }
-
-  .order-button {
-    padding: 7px 13px;
-    font-size: 12px;
-  }
-
-  .features,
-  .samples {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: 38px;
-  }
-
-  .phone {
-    transform: none;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Linkora | تصميم روابط حساباتك</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #080808;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #080808;
+      border-bottom: 1px solid #2e2416;
+    }
+
+    .nav {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #e8bd68;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #e8bd68;
+    }
+
+    .nav-button {
+      border: 1px solid #b98d3f;
+      border-radius: 25px;
+      padding: 8px 18px;
+      color: #e8bd68;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 80px 0;
+    }
+
+    .hero-label {
+      color: #d2a852;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.2;
+      margin-bottom: 22px;
+    }
+
+    .gold {
+      color: #e8bd68;
+    }
+
+    .hero p {
+      color: #aaaaaa;
+      font-size: 17px;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+
+    .price {
+      color: #e8bd68;
+      font-size: 34px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .price span {
+      color: #888888;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    .main-button {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background: #e8bd68;
+      color: #111111;
+      font-weight: bold;
+    }
+
+    .main-button:hover {
+      background: #f1d38e;
+    }
+
+    /* Product Preview */
+    .preview {
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone {
+      width: 280px;
+      padding: 20px;
+      border: 2px solid #8f6a32;
+      border-radius: 35px;
+      background: #101010;
+    }
+
+    .phone-avatar {
+      width: 80px;
+      height: 80px;
+      margin: 10px auto;
+      border-radius: 50%;
+      border: 2px solid #d5ab58;
+      background: #1c1c1c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #e8bd68;
+    }
+
+    .phone h3 {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .phone p {
+      text-align: center;
+      color: #777777;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .phone-link {
+      display: block;
+      padding: 10px;
+      margin: 9px 0;
+      border: 1px solid #3f3f3f;
+      border-radius: 10px;
+      text-align: center;
+      color: #dddddd;
+      font-size: 13px;
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title small {
+      color: #d2a852;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin: 8px 0;
+    }
+
+    .section-title p {
+      color: #888888;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: #101010;
+      border: 1px solid #352914;
+      border-radius: 18px;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 30px;
+      color: #e8bd68;
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      color: #e8bd68;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #999999;
+      font-size: 13px;
+    }
+
+    /* Samples */
+    .samples {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .sample {
+      background: #101010;
+      border: 1px solid #3c2d18;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .sample-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: auto auto 10px;
+      border: 1px solid #c59a4c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e8bd68;
+      font-weight: bold;
+    }
+
+    .sample p {
+      color: #777777;
+      font-size: 11px;
+      margin-bottom: 15px;
+    }
+
+    .sample-link {
+      display: block;
+      border: 1px solid #383838;
+      border-radius: 8px;
+      padding: 7px;
+      margin: 7px 0;
+      font-size: 11px;
+    }
+
+    /* Order */
+    .order {
+      text-align: center;
+      padding: 55px 20px;
+      border: 1px solid #5a431e;
+      border-radius: 22px;
+      background: #0e0e0e;
+    }
+
+    .order h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .order p {
+      color: #999999;
+      margin-bottom: 25px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #2a2115;
+      padding: 30px 0;
+      text-align: center;
+      color: #777777;
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      color: #e8bd68;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .samples {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .samples {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container navbar">
-    <div class="logo">L<span>INKORA</span></div>
+  <header>
+    <div class="container nav">
 
-    <nav>
-      <a href="#home">الرئيسية</a>
-      <a href="#samples">نماذج</a>
-      <a href="#features">مميزات</a>
-      <a href="#faq">الأسئلة</a>
-      <a href="#contact">تواصل</a>
-    </nav>
+      <div class="logo">LINKORA</div>
 
-    <a class="order-button" href="https://wa.me/966563483738" target="_blank">
-      اطلب الآن
-    </a>
-  </div>
-</header>
+      <div class="nav-links">
+        <a href="#home">الرئيسية</a>
+        <a href="#features">المميزات</a>
+        <a href="#samples">النماذج</a>
+        <a href="#order">الطلب</a>
+      </div>
 
-<main id="home">
-
-  <section class="container hero">
-    <div>
-      <div class="small-title">أكثر من مجرد رابط . . .</div>
-
-      <h1>
-        كل حساباتك<br>
-        <span class="gold">في رابط واحد.</span>
-      </h1>
-
-      <p>
-        نصمم لك صفحة روابط احترافية ومميزة تناسب شخصيتك،
-        تجمع كل حساباتك في مكان واحد.
-      </p>
-
-      <a class="main-button" href="https://wa.me/966563483738" target="_blank">
-        اطلب تصميمك الآن عبر واتساب ←
+      <a
+        class="nav-button"
+        href="https://wa.me/966563483738"
+        target="_blank">
+        اطلب الآن
       </a>
 
-      <div class="price">تصميم احترافي بـ 10 ريال فقط</div>
+    </div>
+  </header>
 
-      <div class="stats">
-        <div class="stat">
-          <strong>+100</strong>
-          <span>عميل راضي</span>
+  <main>
+
+    <section class="container hero" id="home">
+
+      <div>
+
+        <div class="hero-label">
+          أكثر من مجرد رابط
         </div>
 
-        <div class="stat">
-          <strong>10 SAR</strong>
+        <h1>
+          كل حساباتك
+          <br>
+          <span class="gold">في رابط واحد.</span>
+        </h1>
+
+        <p>
+          نصمم لك صفحة روابط حسابات احترافية
+          تجمع حساباتك في مكان واحد بتصميم أنيق.
+        </p>
+
+        <div class="price">
+          10 ريال
           <span>سعر التصميم</span>
         </div>
 
-        <div class="stat">
-          <strong>⚡</strong>
-          <span>تصميم سريع</span>
-        </div>
+        <a
+          class="main-button"
+          href="https://wa.me/966563483738"
+          target="_blank">
+          اطلب تصميمك عبر واتساب
+        </a>
+
       </div>
+
+      <div class="preview">
+
+        <div class="phone">
+
+          <div class="phone-avatar">
+            L
+          </div>
+
+          <h3>Your Name</h3>
+
+          <p>
+            جميع حساباتك في مكان واحد
+          </p>
+
+          <a class="phone-link" href="#">
+            TikTok
+          </a>
+
+          <a class="phone-link" href="#">
+            Instagram
+          </a>
+
+          <a class="phone-link" href="#">
+            YouTube
+          </a>
+
+          <a class="phone-link" href="#">
+            Snapchat
+          </a>
+
+          <a class="phone-link" href="#">
+            WhatsApp
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <small>LINKORA</small>
+          <h2>لماذا تختار Linkora؟</h2>
+          <p>
+            خدمة بسيطة بسعر مناسب
+          </p>
+        </div>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">◇</div>
+            <h3>معاينة قبل الدفع</h3>
+            <p>
+              تشوف التصميم قبل الدفع وتتأكد أنه مناسب لك.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <h3>تصميم احترافي</h3>
+            <p>
+              تصميم مرتب ومميز يناسب حساباتك.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">▣</div>
+            <h3>متوافق مع الجوال</h3>
+            <p>
+              يعمل بشكل مناسب على الجوال والأجهزة المختلفة.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">✓</div>
+            <h3>تعديل حسب طلبك</h3>
+            <p>
+              نعدل التصميم حسب طلبك قبل التسليم.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="samples">
+
+      <div class="container">
+
+        <div class="section-title">
+          <small>OUR WORK</small>
+          <h2>نماذج من التصاميم</h2>
+          <p>
+            أمثلة توضيحية للتصميم
+          </p>
+        </div>
+
+        <div class="samples">
+
+          <div class="sample">
+            <div class="sample-avatar">A</div>
+            <h3>Minimal</h3>
+            <p>تصميم بسيط</p>
+            <div class="sample-link">Instagram</div>
+            <div class="sample-link">TikTok</div>
+            <div class="sample-link">YouTube</div>
+          </div>
+
+          <div class="sample">
+            <div class="sample-avatar">N</div>
+            <h3>Dark</h3>
+            <p>تصميم داكن</p>
+            <div class="sample-link">Instagram</div>
+            <div class="sample-link">WhatsApp</div>
+            <div class="sample-link">TikTok</div>
+          </div>
+
+          <div class="sample">
+            <div class="sample-avatar">L</div>
+            <h3>Premium</h3>
+            <p>تصميم فاخر</p>
+            <div class="sample-link">YouTube</div>
+            <div class="sample-link">Instagram</div>
+            <div class="sample-link">Snapchat</div>
+          </div>
+
+          <div class="sample">
+            <div class="sample-avatar">V</div>
+            <h3>Modern</h3>
+            <p>تصميم عصري</p>
+            <div class="sample-link">TikTok</div>
+            <div class="sample-link">Facebook</div>
+            <div class="sample-link">WhatsApp</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="container section" id="order">
+
+      <div class="order">
+
+        <h2>
+          جاهز لصفحتك الخاصة؟
+        </h2>
+
+        <p>
+          تواصل عبر واتساب وأرسل روابط حساباتك،
+          ونجهز لك معاينة قبل الدفع.
+        </p>
+
+        <a
+          class="main-button"
+          href="https://wa.me/966563483738"
+          target="_blank">
+          اطلب الآن
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-logo">
+      LINKORA
     </div>
 
-    <div class="phone-area">
-      <div class="phone">
-        <div class="phone-top">
-          <div class="phone-avatar">L</div>
-          <h3>Your Name</h3>
-          <small>Be different.</small>
-        </div>
-
-        <a class="phone-link" href="#">TikTok</a>
-        <a class="phone-link" href="#">Instagram</a>
-        <a class="phone-link" href="#">YouTube</a>
-        <a class="phone-link" href="#">Snapchat</a>
-        <a class="phone-link" href="#">WhatsApp</a>
-        <a class="phone-link" href="#">Shop</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="container">
-      <div class="section-title">
-        <small>LINKORA</small>
-        <h2>لماذا تختار Linkora؟</h2>
-        <p>خدمة بسيطة، شكل احترافي، وسعر مناسب</p>
-      </div>
-
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">🛡</div>
-          <h3>معاينة قبل الدفع</h3>
-          <p>تشوف التصميم أولًا وتتأكد أنه مناسب لك.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">⚙</div>
-          <h3>تعديل حسب طلبك</h3>
-          <p>نعدل التصميم والروابط بما يناسبك.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">✦</div>
-          <h3>تصميم احترافي</h3>
-          <p>ألوان وتنسيق مميز يعكس شخصيتك.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">☎</div>
-          <h3>دعم سريع</h3>
-          <p>متواجد للرد على استفساراتك وتنفيذ طلبك.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="samples">
-    <div class="container">
-      <div class="section-title">
-        <small>أعمالنا</small>
-        <h2>نماذج من تصاميمنا</h2>
-        <p>أمثلة توضيحية لشكل صفحات الروابط</p>
-      </div>
-
-      <div class="samples">
-        <div class="sample">
-          <div class="sample-avatar">V</div>
-          <h3>Your Name</h3>
-          <p>Stay Real.</p>
-          <div class="sample-link">Instagram</div>
-          <div class="sample-link">TikTok</div>
-          <div class="sample-link">YouTube</div>
-          <div class="sample-link">WhatsApp</div>
-        </div>
-
-        <div class="sample">
-          <div class="sample-avatar">L</div>
-          <h3>Your Name</h3>
-          <p>Good Vibes Only.</p>
-          <div class="sample-link">Instagram</div>
-          <div class="sample-link">TikTok</div>
-          <div class="sample-link">YouTube</div>
-          <div class="sample-link">Snapchat</div>
-        </div>
-
-        <div class="sample">
-          <div class="sample-avatar">☾</div>
-          <h3>Your Name</h3>
-          <p>Dream Higher.</p>
-          <div class="sample-link">Instagram</div>
-          <div class="sample-link">TikTok</div>
-          <div class="sample-link">YouTube</div>
-          <div class="sample-link">Telegram</div>
-        </div>
-
-        <div class="sample">
-          <div class="sample-avatar">N</div>
-          <h3>Your Name</h3>
-          <p>No Limits.</p>
-          <div class="sample-link">Instagram</div>
-          <div class="sample-link">TikTok</div>
-          <div class="sample-link">YouTube</div>
-          <div class="sample-link">WhatsApp</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container section" id="contact">
-    <div class="cta">
-      <h2>جاهز لصفحتك الخاصة؟</h2>
-      <p>تواصل معنا الآن واطلب تصميمك بـ 10 ريال فقط.</p>
-
-      <a class="main-button" href="https://wa.me/966563483738" target="_blank">
-        اطلب الآن عبر واتساب ←
-      </a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="container footer-content">
     <div>
-      <div class="logo">L<span>INKORA</span></div>
-      <div class="footer-text">All your links, one place.</div>
+      All your links, one place.
     </div>
 
-    <div class="footer-links">
-      <a href="#home">الرئيسية</a>
-      <a href="#samples">نماذج</a>
-      <a href="#features">مميزات</a>
-      <a href="#contact">تواصل</a>
+    <div>
+      © 2026 Linkora
     </div>
 
-    <div class="footer-text">
-      © 2026 Linkora<br>
-      جميع الحقوق محفوظة
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
